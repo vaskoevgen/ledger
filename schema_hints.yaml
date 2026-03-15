@@ -1,0 +1,30 @@
+version: "1"
+project: ledger
+storage_backends:
+  - type: filesystem
+    purpose: schema_storage
+    path: schemas/
+    format: yaml
+    fields:
+      - name: schema_definitions
+        classification: PUBLIC
+        annotation: append_only
+      - name: field_annotations
+        classification: PUBLIC
+      - name: changelog
+        file: changelog.jsonl
+        classification: COMPLIANCE
+        annotation: append_only
+      - name: migration_plans
+        classification: PUBLIC
+
+  - type: filesystem
+    purpose: runtime_config
+    path: ./
+    format: yaml
+    fields:
+      - name: ledger_config
+        file: ledger.yaml
+        classification: PUBLIC
+      - name: propagation_table
+        classification: PUBLIC
