@@ -1,0 +1,19 @@
+# Reeve backend declaration for Ledger registration. See
+# ~/Code/ledger/.ledger/registry/<backend_id>.yaml format.
+
+backend_id: reeve_main
+type: postgres
+owner_component: reeve
+description: |
+  Reeve's primary tenant-scoped database. Hosts customers, conversations,
+  messages, actions, events (Tessera hash chain), operator accounts.
+
+  All business tables are RLS-protected by tenant_id. Schemas in
+  ledger-schemas/tables/*.yaml.
+
+data_access:
+  - PUBLIC
+  - PII
+  - FINANCIAL
+  - COMPLIANCE
+  # AUTH lives in a separate auth-pool DB; not declared here.

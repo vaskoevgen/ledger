@@ -1,0 +1,21 @@
+backend_id: reeve_main
+table: customers
+fields:
+  - name: id
+    type: uuid
+    annotations: [immutable, tenant_scoped]
+  - name: tenant_id
+    type: uuid
+    annotations: [immutable, tenant_scoped]
+    classification: PUBLIC
+  - name: display_name
+    type: text
+    classification: PII
+    annotations: [canary_eligible, gdpr_erasable]
+  - name: created_at
+    type: timestamptz
+    annotations: [audit_field]
+    classification: PUBLIC
+  - name: updated_at
+    type: timestamptz
+    classification: PUBLIC

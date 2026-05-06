@@ -1,0 +1,50 @@
+backend_id: reeve_main
+table: messages
+fields:
+  - name: id
+    type: uuid
+    annotations: [immutable]
+  - name: tenant_id
+    type: uuid
+    annotations: [immutable, tenant_scoped]
+    classification: PUBLIC
+  - name: conversation_id
+    type: uuid
+    annotations: [immutable]
+    classification: PUBLIC
+  - name: customer_id
+    type: uuid
+    annotations: [immutable]
+    classification: PUBLIC
+  - name: direction
+    type: text
+    classification: PUBLIC
+  - name: channel
+    type: text
+    classification: PUBLIC
+  - name: subject
+    type: text
+    classification: PII
+    annotations: [canary_eligible, gdpr_erasable]
+  - name: body_text
+    type: text
+    classification: PII
+    annotations: [canary_eligible, gdpr_erasable]
+  - name: body_html
+    type: text
+    classification: PII
+    annotations: [gdpr_erasable]
+  - name: external_id
+    type: text
+    classification: PUBLIC
+  - name: external_vendor
+    type: text
+    classification: PUBLIC
+  - name: occurred_at
+    type: timestamptz
+    annotations: [audit_field]
+    classification: PUBLIC
+  - name: created_at
+    type: timestamptz
+    annotations: [audit_field]
+    classification: PUBLIC
